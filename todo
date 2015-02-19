@@ -1,0 +1,3 @@
+remove minilibx folder
+remove Makefile references to minilibx
+remove stdio.h include
