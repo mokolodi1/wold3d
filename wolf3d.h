@@ -38,6 +38,18 @@
 # define DEFAULT_WINDOW_HEIGHT		500
 # define KEY_ESC            		65307
 
+typedef struct		s_point
+{
+	double			x;
+	double			y;
+}					t_point;
+
+typedef struct		s_line
+{
+	t_point			first;
+	t_point			second;
+}					t_line;
+
 typedef struct		s_map
 {
 	int				**data;
@@ -47,8 +59,10 @@ typedef struct		s_map
 
 typedef struct		s_camera
 {
-	double			x;
-	double			y;
+	t_point			location;
+	double			direction;
+	int				x_map_offset;
+	int				y_map_offset;
 	double			horizontal_viewing_angle;	//convert to radians
 	double			vertical_viewing_angle;
 }					t_camera;
@@ -68,6 +82,8 @@ void				setup_viewer(t_map *map);
 int					expose_hook(t_environment *env);
 int					key_hook(int keycode, t_environment *env);
 void            	draw(t_environment *env);
+int					get_wall_height(t_map *map, t_camera *camera
+										, double viewing_angle);
 
 int					mlx_rgb_to_color(int red, int green, int blue);
 

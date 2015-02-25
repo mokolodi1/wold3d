@@ -2,8 +2,8 @@
 
 static void			setup_camera(t_camera *camera)
 {
-	camera->x = 0;
-	camera->y = 0;
+	camera->location->x = 0;
+	camera->locatoin->y = 0;
 	camera->horizontal_viewing_angle = 90;
 	camera->vertical_viewing_angle = 90;
 }

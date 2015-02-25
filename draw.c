@@ -6,18 +6,16 @@ void				draw_segment(t_environment *env, int x_pixel
 	int				wall_height;
 	int				i;
 
-	// calculate wall_height
-	wall_height = 4;
+	wall_height = get_wall_height(env->map, &env->camera, viewing_angle);
 	i = 0;
 	while (i < env->window_height)
 	{
-		
 		if (ft_abs(env->window_height / 2 - i) < wall_height / 2)
 			mlx_pixel_put(env->mlx, env->window, x_pixel, i,
 						  mlx_rgb_to_color(255, 255, 255));
 		else
 			mlx_pixel_put(env->mlx, env->window, x_pixel, i,
-						  mlx_rgb_to_color(0, 0, 0));
+						  mlx_rgb_to_color(30, 30, 30));
 		i++;
 	}
 	(void)viewing_angle;
@@ -29,7 +27,8 @@ void            	draw(t_environment *env)
 	double			increment;
 	int				i;
 
-	viewing_angle = -env->camera.horizontal_viewing_angle;
+	// no negative or more than 360 degrees
+	viewing_angle = env->camera.direction -env->camera.horizontal_viewing_angle;
 	increment = env->camera.horizontal_viewing_angle / env->window_width;
 	i = 0;
 	while (i < env->window_width)

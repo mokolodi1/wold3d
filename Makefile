@@ -28,6 +28,7 @@ COMPILED =		main.o \
 			expose_hook.o \
 			key_hook.o \
 			draw.o \
+			get_wall_height.o \
 			mlx_rgb_to_color.o
 
 all: $(NAME)
