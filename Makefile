@@ -29,6 +29,11 @@ COMPILED =		main.o \
 			key_hook.o \
 			draw.o \
 			get_wall_height.o \
+			look_for_walls.o \
+			set_wall_directions.o \
+			distance_between.o \
+			line_length.o \
+			degrees_to_radians.o \
 			mlx_rgb_to_color.o
 
 all: $(NAME)

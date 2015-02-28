@@ -34,9 +34,16 @@
 # include <math.h>
 # include <stdio.h> // debug
 
-# define DEFAULT_WINDOW_WIDTH		500
-# define DEFAULT_WINDOW_HEIGHT		500
+# define DEFAULT_WINDOW_WIDTH		100
+# define DEFAULT_WINDOW_HEIGHT		100
 # define KEY_ESC            		65307
+
+/* # define DIST(F, S) (sqrt(pow((S).x - (F).x, 2) + pow((S).y - (F).y, 2))) */
+/* # define DISTANCE_BETWEEN(FIRST, SECOND) DIST(FIRST, SECOND) */
+// undefine DIST
+
+# define SMALLER(FIRST, SECOND) ((FIRST) < (SECOND) ? (FIRST) : (SECOND))
+# define GREATER(FIRST, SECOND) ((FIRST) > (SECOND) ? (FIRST) : (SECOND))
 
 typedef struct		s_point
 {
@@ -61,8 +68,8 @@ typedef struct		s_camera
 {
 	t_point			location;
 	double			direction;
-	int				x_map_offset;
-	int				y_map_offset;
+	int				horizontal_wall_direction;
+	int				vertical_wall_direction;
 	double			horizontal_viewing_angle;	//convert to radians
 	double			vertical_viewing_angle;
 }					t_camera;
@@ -79,11 +86,17 @@ typedef struct		s_environment
 
 void				read_map(t_map *map, char *filename);
 void				setup_viewer(t_map *map);
+
 int					expose_hook(t_environment *env);
 int					key_hook(int keycode, t_environment *env);
 void            	draw(t_environment *env);
 int					get_wall_height(t_map *map, t_camera *camera
 										, double viewing_angle);
+int					look_for_walls(t_map *map, t_camera *camera, t_line *current);
+void				set_wall_directions(t_camera *camera);
+double				distance_between(t_point *first, t_point *second);
+double				line_length(t_line *line);
+double				degrees_to_radians(double degrees);
 
 int					mlx_rgb_to_color(int red, int green, int blue);
 
