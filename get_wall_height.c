@@ -32,17 +32,20 @@ int					get_wall_height(t_map *map, t_camera *camera
 	current.first.x = camera->location.x;
 	current.first.y = camera->location.y;
 	current.second = current.first;
-	if (!is_on_map(map, &current.second)) // debug
-		ft_putendl_exit("You went out of bounds (get_wall_height.c)!", 1);
-	iterate_line(&current, viewing_angle);
 	found = 0;
-	while (!found && is_on_map(map, &current.second))
+	while (!found)
 	{
 		iterate_line(&current, viewing_angle);
+		if (!is_on_map(map, &current.second))
+			break;
 		found = look_for_walls(map, camera, &current);
 	}
 	if (found)
+	{
+		printf("viewing_angle = %f\tline_length = %f\n"
+				, viewing_angle, line_length(&current));
 		return (convert_distance_to_pixel_height(line_length(&current)
 													, camera));
+	}
 	return (0);
 }

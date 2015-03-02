@@ -2,6 +2,7 @@
 
 void				set_wall_directions(t_camera *camera)
 {
+	if  (camera->direction 
 	if (camera->direction < M_PI_4)
 	{
 		camera->horizontal_wall_direction = 1;

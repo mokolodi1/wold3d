@@ -31,7 +31,8 @@ int					look_for_walls(t_map *map, t_camera *camera, t_line *view)
 	// check to make sure there are walls when we set the points
 	(void)map;
 	set_points(&to_vertical, &to_horizontal, camera, view);
-	vertical_length = /* verify map data is 1 (use offsets?) && */
+	vertical_length = map->data[camera->location.y + vertical_wall_direction]
+		[camera->location.x + horizontal_wall_direction]
 		point_is_on_line(&to_vertical, view)
 		? distance_between(&view->first, &to_vertical) : -1;
 	horizontal_length = point_is_on_line(&to_horizontal, view)

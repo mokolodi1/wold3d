@@ -34,8 +34,8 @@
 # include <math.h>
 # include <stdio.h> // debug
 
-# define DEFAULT_WINDOW_WIDTH		100
-# define DEFAULT_WINDOW_HEIGHT		100
+# define DEFAULT_WINDOW_WIDTH		500
+# define DEFAULT_WINDOW_HEIGHT		500
 # define KEY_ESC            		65307
 
 /* # define DIST(F, S) (sqrt(pow((S).x - (F).x, 2) + pow((S).y - (F).y, 2))) */
@@ -70,7 +70,7 @@ typedef struct		s_camera
 	double			direction;
 	int				horizontal_wall_direction;
 	int				vertical_wall_direction;
-	double			horizontal_viewing_angle;	//convert to radians
+	double			horizontal_viewing_angle;
 	double			vertical_viewing_angle;
 }					t_camera;
 

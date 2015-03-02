@@ -7,7 +7,7 @@ void				draw_segment(t_environment *env, int x_pixel
 	int				i;
 
 	wall_height = get_wall_height(env->map, &env->camera, viewing_angle);
-	printf("viewing_angle = %f\twall_height = %d\n", viewing_angle, wall_height);
+	
 	i = 0;
 	while (i < env->window_height)
 	{
