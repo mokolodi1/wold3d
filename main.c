@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:38 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/14 18:34:47 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/02 13:50:20 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 
 void			print_map(t_map *map) // debug
 {
+	int			outer;
+	int			inner;
+
 	printf("map->width = %d\n", map->width);
 	printf("map->height = %d\n", map->height);
-	for (int outer = 0; outer < map->height; outer++)
+	outer = 0;
+	while (outer < map->height)
 	{
 		printf("[");
-		for (int inner = 0; inner < map->width - 1; inner++)
+		inner = 0;
+		while (inner < map->width - 1)
+		{
 			printf("%3d", map->data[outer][inner]);
+			inner++;
+		}
 		printf("%3d]\n", map->data[outer][map->width - 1]);
+		outer++;
 	}
 }
 

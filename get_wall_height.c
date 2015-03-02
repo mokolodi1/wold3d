@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_wall_height.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/03/02 13:39:38 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/02 13:55:58 by tfleming         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
 static void			iterate_line(t_line *line, double direction_angle)
@@ -18,9 +30,11 @@ static int			convert_distance_to_pixel_height(double distance
 {
 	// handle very small values --> could overflow int
 	// not sure about the formula
+	// magic numbers
 
-	(void)camera;
-	return ((int)(1 / distance * 10));
+	return ((atan(((double)100 / 2) / distance) / 0.0174532925)
+		/ ((double)camera->horizontal_viewing_angle
+		   / (double)500) * 2 - 27932);
 }
 
 int					get_wall_height(t_map *map, t_camera *camera
@@ -28,6 +42,7 @@ int					get_wall_height(t_map *map, t_camera *camera
 {
 	t_line			current;
 	int				found;
+	int				returning;
 
 	current.first.x = camera->location.x;
 	current.first.y = camera->location.y;
@@ -42,10 +57,11 @@ int					get_wall_height(t_map *map, t_camera *camera
 	}
 	if (found)
 	{
-		printf("viewing_angle = %f\tline_length = %f\n"
-				, viewing_angle, line_length(&current));
-		return (convert_distance_to_pixel_height(line_length(&current)
+		returning = (convert_distance_to_pixel_height(line_length(&current)
 													, camera));
+		printf("viewing_angle = %f\twall_height = %d\n"
+				, viewing_angle, returning);
+		return (returning);
 	}
 	return (0);
 }

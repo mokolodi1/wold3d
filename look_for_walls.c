@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   look_for_walls.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/03/02 13:39:34 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/02 13:51:27 by tfleming         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
 static int			point_is_on_line(t_point *point, t_line *line)
@@ -31,8 +43,8 @@ int					look_for_walls(t_map *map, t_camera *camera, t_line *view)
 	// check to make sure there are walls when we set the points
 	(void)map;
 	set_points(&to_vertical, &to_horizontal, camera, view);
-	vertical_length = map->data[camera->location.y + vertical_wall_direction]
-		[camera->location.x + horizontal_wall_direction]
+	vertical_length = /* map->data[camera->location.y + vertical_wall_direction] */
+		/* [camera->location.x + horizontal_wall_direction] */
 		point_is_on_line(&to_vertical, view)
 		? distance_between(&view->first, &to_vertical) : -1;
 	horizontal_length = point_is_on_line(&to_horizontal, view)
