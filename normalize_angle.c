@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance_between.c                                 :+:      :+:    :+:   */
+/*   normalize_angle.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/03 13:50:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/03 13:50:52 by tfleming         ###   ########.fr       */
+/*   Created: 2015/03/03 15:41:13 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/03 15:59:41 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-double				distance_between(t_point *first, t_point *second)
+/*
+** makes angles between 0 and M_PI
+** example: 4 ==> 4 - M_PI
+** note: that's as clear as I can be, and I'm not going to be using
+** this for values outside [-M_PI, 4 * M_PI]
+*/
+
+void				normalize_angle(double *angle)
 {
-	return (sqrt(pow(second->x - first->x, 2) + pow(second->y - first->y, 2)));
+	while (*angle < 0)
+		*angle += 2 * M_PI;
+	while (*angle > 2 * M_PI)
+		*angle -= 2 * M_PI;
 }

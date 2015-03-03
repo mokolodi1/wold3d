@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/02 13:39:38 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/02 13:55:58 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/03 10:37:16 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int					get_wall_height(t_map *map, t_camera *camera
 {
 	t_line			current;
 	int				found;
-	int				returning;
 
+	
 	current.first.x = camera->location.x;
 	current.first.y = camera->location.y;
 	current.second = current.first;
@@ -59,8 +59,6 @@ int					get_wall_height(t_map *map, t_camera *camera
 	{
 		returning = (convert_distance_to_pixel_height(line_length(&current)
 													, camera));
-		printf("viewing_angle = %f\twall_height = %d\n"
-				, viewing_angle, returning);
 		return (returning);
 	}
 	return (0);

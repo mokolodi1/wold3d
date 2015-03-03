@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance_between.c                                 :+:      :+:    :+:   */
+/*   is_on_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/03 13:50:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/03 13:50:52 by tfleming         ###   ########.fr       */
+/*   Created: 2015/03/03 10:48:15 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/03 10:51:46 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-double				distance_between(t_point *first, t_point *second)
+int					is_on_map(t_map *map, t_point *point)
 {
-	return (sqrt(pow(second->x - first->x, 2) + pow(second->y - first->y, 2)));
+	return (floor(point->x) >= 0 && floor(point->y) >= 0
+			&& ceil(point->x) <= map->width && ceil(point->y) <= map->height);
 }

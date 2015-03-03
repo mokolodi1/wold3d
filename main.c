@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:38 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/02 13:50:20 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/03 19:23:00 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int				main(int argc, char **argv)
 	ft_bzero(&map, sizeof(t_map));
 	read_map(&map, argv[1]);
 	print_map(&map);
-	setup_viewer(&map);
+	setup_and_start_viewer(&map);
 	return (0);
 }
