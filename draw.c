@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/03 19:20:37 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/04 23:04:32 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 static int			get_color(t_direction direction)
 {
-	(void)direction;
+	if (direction == EAST)
+		return (mlx_rgb_to_color(255, 0, 0));
+	if (direction == NORTH)
+		return (mlx_rgb_to_color(0, 255, 0));
+	if (direction == WEST)
+		return (mlx_rgb_to_color(0, 0, 255));
+	if (direction == SOUTH)
+		return (mlx_rgb_to_color(255, 255, 0));
 	return (mlx_rgb_to_color(255, 255, 255));
 }
 
@@ -33,7 +40,6 @@ static void			draw_segment(t_environment *env, int x_pixel
 
 	send_ray(&ray, env->map, &env->camera.location, direction);
 	wall_height = ray.distance == -1 ? 0 : convert_to_pixels(ray.distance);
-	printf("wall_height = %d\n\n", wall_height);
 	i = 0;
 	while (i < env->window_height)
 	{
@@ -63,5 +69,7 @@ void            	draw(t_environment *env)
 		draw_segment(env, i, direction);
 		direction += increment;
 		i++;
+		printf("\n\n");
 	}
+	printf("================================================== end of draw\n");
 }

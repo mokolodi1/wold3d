@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/03 18:28:20 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/04 16:06:10 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,20 +23,21 @@ INC_FLAGS =             -I $(LIBFT) -I $(MLX)
 LIB_FLAGS =             -L $(LIBFT) -L $(X11) -L $(MLX) -lft -lmlx -lXext -lX11
 
 COMPILED =		main.o \
-			read_map.o \
-			setup_and_start_viewer.o \
-			expose_hook.o \
-			key_hook.o \
-			draw.o \
-			send_ray.o \
-			look_for_walls.o \
-			is_on_map.o \
-			set_wall_directions.o \
-			distance_between.o \
-			line_length.o \
-			degrees_to_radians.o \
-			normalize_angle.o \
-			mlx_rgb_to_color.o
+				read_map.o \
+				setup_and_start_viewer.o \
+				expose_hook.o \
+				key_hook.o \
+				move.o \
+				draw.o \
+				send_ray.o \
+				look_for_walls.o \
+				is_on_map.o \
+				set_wall_directions.o \
+				distance_between.o \
+				line_length.o \
+				degrees_to_radians.o \
+				normalize_angle.o \
+				mlx_rgb_to_color.o
 
 all: $(NAME)
 
