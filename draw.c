@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/04 23:04:32 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/05 18:07:36 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int			get_color(t_direction direction)
 static int			convert_to_pixels(double distance)
 {
 	return ((atan(((double)SCOPE / 2) / distance) / DEGREE)
-		/ ((double)VIEW_WIDTH / DEFAULT_WINDOW_WIDTH) * 2);
+			* 5);//((double)VIEW_HEIGHT / WINDOW_WIDTH) * 2);
 }
 
 static void			draw_segment(t_environment *env, int x_pixel
@@ -59,8 +59,8 @@ void            	draw(t_environment *env)
 	double			increment;
 	int				i;
 
-	increment = HORIZONTAL_VIEWING_ANGLE / env->window_width;
-	direction = env->camera.direction - HORIZONTAL_VIEWING_ANGLE / 2
+	increment = VIEW_WIDTH / env->window_width;
+	direction = env->camera.direction - VIEW_WIDTH / 2
 		+ increment / 2;
 	i = 0;
 	while (i < env->window_width)
@@ -69,7 +69,7 @@ void            	draw(t_environment *env)
 		draw_segment(env, i, direction);
 		direction += increment;
 		i++;
-		printf("\n\n");
+//		printf("\n\n");
 	}
-	printf("================================================== end of draw\n");
+//	printf("================================================== end of draw\n");
 }

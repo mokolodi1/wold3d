@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/04 23:07:57 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/05 18:06:43 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,37 @@
 # include <math.h>
 # include <stdio.h> // debug
 
-# define DEFAULT_WINDOW_WIDTH		500
-# define DEFAULT_WINDOW_HEIGHT		500
-# define HORIZONTAL_VIEWING_ANGLE	M_PI
+# define RADIANS_TO_DEGREES(RADIANS) (RADIANS * 180 / M_PI)
+# define DEGREES_TO_RADIANS(RADIANS) (RADIANS * M_PI / 180)
 
-# define MAP_PADDING				10
+# define WINDOW_WIDTH			200
+# define WINDOW_HEIGHT			200
 
-# define KEY_ESC            		65307
-# define KEY_UP_ARROW				65362
-# define KEY_LEFT_ARROW				65361
-# define KEY_DOWN_ARROW				65364
-# define KEY_RIGHT_ARROW			65363
+# define MAP_PADDING			10
 
-# define DEGREE						0.0174532925
-# define SCOPE						.5
-# define VIEW_WIDTH					180
+# define KEY_ESC            	65307
+# define KEY_UP_ARROW			65362
+# define KEY_LEFT_ARROW			65361
+# define KEY_DOWN_ARROW			65364
+# define KEY_RIGHT_ARROW		65363
 
-# define VELOCITY					.2
-# define ANGULAR_VELOCITY			(DEGREE * 10)
+/*
+** scope = multiplier for vertical part of triangle in atan
+*/
 
-# define BACKGROUND_COLOR			0x000000
+# define DEGREE					DEGREES_TO_RADIANS(1)
+# define SCOPE					1
+# define VIEW_WIDTH				DEGREES_TO_RADIANS(90)
+# define VIEW_HEIGHT			(VIEW_WIDTH * (WINDOW_HEIGHT / WINDOW_WIDTH))
+
+# define VELOCITY				.2
+# define ANGULAR_VELOCITY		(DEGREE * 10)
+
+# define BACKGROUND_COLOR		0x000000
 
 # define SMALLER(FIRST, SECOND) ((FIRST) < (SECOND) ? (FIRST) : (SECOND))
 # define GREATER(FIRST, SECOND) ((FIRST) > (SECOND) ? (FIRST) : (SECOND))
+
 
 typedef struct		s_point
 {
@@ -113,7 +121,8 @@ void				setup_and_start_viewer(t_map *map);
 int					expose_hook(t_environment *env);
 int					key_hook(int keycode, t_environment *env);
 
-void				move(double x, double y, t_environment *env);
+void				move_camera(double x, double y, t_environment *env);
+void				rotate_camera(t_environment *env, double delta_angle);
 
 void            	draw(t_environment *env);
 void				send_ray(t_ray *ray, t_map *map, t_point *location
@@ -125,7 +134,6 @@ int					is_on_map(t_map *map, t_point *point);
 void				set_wall_directions(t_camera *camera);//debug?
 double				distance_between(t_point *first, t_point *second);
 double				line_length(t_line *line);
-double				degrees_to_radians(double degrees);
 void				normalize_angle(double *angle);
 
 int					mlx_rgb_to_color(int red, int green, int blue);

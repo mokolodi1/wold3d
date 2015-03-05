@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/02/15 00:38:06 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/05 16:57:42 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -139,6 +139,7 @@ all: $(NAME)
 $(NAME): $(COMPILED)
 	@ar rc $(NAME) $(COMPILED)
 	@ranlib $(NAME)
+	@echo "made" $(NAME)
 
 $(COMPILED): %.o: %.c
 	@$(CC) -c $(FLAGS) $< -o $@ -I $(INCLUDES)

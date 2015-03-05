@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   rotate_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/04 15:59:15 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/04 23:04:13 by tfleming         ###   ########.fr       */
+/*   Created: 2015/03/05 15:56:28 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/05 16:34:07 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void				move(double x, double y, t_environment *env)
+void				rotate_camera(t_environment *env, double delta_angle)
 {
-	env->camera.location.x += VELOCITY * x;
-	env->camera.location.y += VELOCITY * y;
-	printf("camera location now (%f, %f)\n", env->camera.location.x
-		   , env->camera.location.y);
+	env->camera.direction += delta_angle;
+	normalize_angle(&env->camera.direction);
+	printf("camera angle is now %f (%f degrees)\n", env->camera.direction
+		   , RADIANS_TO_DEGREES(env->camera.direction));
 	draw(env);
 }

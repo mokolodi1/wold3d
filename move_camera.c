@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   degrees_to_radians.c                               :+:      :+:    :+:   */
+/*   move_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/03 13:53:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/03 15:17:06 by tfleming         ###   ########.fr       */
+/*   Created: 2015/03/04 15:59:15 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/05 15:56:59 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-double				degrees_to_radians(double degrees)
+void				move_camera(double x, double y, t_environment *env)
 {
-	return (degrees * M_PI / 180);
+	env->camera.location.x += VELOCITY * x;
+	env->camera.location.y += VELOCITY * y;
+	printf("camera location now (%f, %f)\n", env->camera.location.x
+		   , env->camera.location.y);
+	draw(env);
 }

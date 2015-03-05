@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:46 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/03 15:06:39 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/05 16:37:06 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void			setup_camera(t_camera *camera, t_map *map)
 static void			setup_environment(t_environment *env, t_map *map)
 {
 	env->mlx = mlx_init();
-	env->window_width = DEFAULT_WINDOW_WIDTH;
-	env->window_height = DEFAULT_WINDOW_HEIGHT;
+	env->window_width = WINDOW_WIDTH;
+	env->window_height = WINDOW_HEIGHT;
 	env->window = mlx_new_window(env->mlx
 									, env->window_width, env->window_height
 									, "wolf3d");

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/04 23:17:15 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/05 16:00:49 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,21 @@ static void			switch_keys(int keycode, t_environment *env)
 	if (keycode == KEY_ESC)
 		exit(0);
 	else if (keycode == 'w' || keycode == KEY_UP_ARROW)
-		move(sin(env->camera.direction), cos(env->camera.direction), env);
+		move_camera(sin(env->camera.direction)
+					, cos(env->camera.direction), env);
 	else if (keycode == 'a' || keycode == KEY_LEFT_ARROW)
-		move(sin(env->camera.direction - M_PI_2)
-			 , cos(env->camera.direction) - M_PI_2, env);
+		move_camera(sin(env->camera.direction - M_PI_2)
+					, cos(env->camera.direction - M_PI_2), env);
 	else if (keycode == 's' || keycode == KEY_DOWN_ARROW)
-		move(-sin(env->camera.direction), -cos(env->camera.direction), env);
+		move_camera(-sin(env->camera.direction)
+					, -cos(env->camera.direction), env);
 	else if (keycode == 'd' || keycode == KEY_RIGHT_ARROW)
-		move(sin(env->camera.direction + M_PI_2)
-			 , cos(env->camera.direction) + M_PI_2, env);
+		move_camera(sin(env->camera.direction + M_PI_2)
+					, cos(env->camera.direction + M_PI_2), env);
 	else if (keycode == '.' || keycode == 'e')
-	{
-		env->camera.direction += ANGULAR_VELOCITY;
-		normalize_angle(&env->camera.direction);
-		draw(env);
-	}
+		rotate_camera(env, ANGULAR_VELOCITY);
 	else if (keycode == ',' || keycode == 'q')
-	{
-		env->camera.direction -= ANGULAR_VELOCITY;
-		normalize_angle(&env->camera.direction);
-		draw(env);
-	}
+		rotate_camera(env, -ANGULAR_VELOCITY);
 }
 
 int					key_hook(int keycode, t_environment *env)
