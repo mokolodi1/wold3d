@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/05 16:56:22 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/09 15:45:36 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,10 +30,9 @@ COMPILED =		main.o \
 				move_camera.o \
 				rotate_camera.o \
 				draw.o \
-				send_ray.o \
+				old_send_ray.o \
 				look_for_walls.o \
 				is_on_map.o \
-				set_wall_directions.o \
 				distance_between.o \
 				line_length.o \
 				normalize_angle.o \

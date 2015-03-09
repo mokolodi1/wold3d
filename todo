@@ -1,3 +1,7 @@
 remove minilibx folder
 remove Makefile references to minilibx
 remove stdio.h include
+
+change to new mlx on Yosemite
+fix map issues
+add images to increase speed

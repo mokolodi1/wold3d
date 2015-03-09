@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/05 18:07:36 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/09 14:21:26 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int			get_color(t_direction direction)
 static int			convert_to_pixels(double distance)
 {
 	return ((atan(((double)SCOPE / 2) / distance) / DEGREE)
-			* 5);//((double)VIEW_HEIGHT / WINDOW_WIDTH) * 2);
+			* 5 / 200 * WINDOW_HEIGHT);
 }
 
 static void			draw_segment(t_environment *env, int x_pixel

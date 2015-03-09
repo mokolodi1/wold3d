@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/05 18:06:43 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/09 15:45:58 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define RADIANS_TO_DEGREES(RADIANS) (RADIANS * 180 / M_PI)
 # define DEGREES_TO_RADIANS(RADIANS) (RADIANS * M_PI / 180)
 
-# define WINDOW_WIDTH			200
-# define WINDOW_HEIGHT			200
+# define WINDOW_WIDTH			400
+# define WINDOW_HEIGHT			400
 
-# define MAP_PADDING			10
+# define MAP_PADDING			5
 
 # define KEY_ESC            	65307
 # define KEY_UP_ARROW			65362
@@ -131,7 +131,6 @@ int					look_for_walls(t_map *map, t_camera *camera
 										, t_line *current);
 int					is_on_map(t_map *map, t_point *point);
 
-void				set_wall_directions(t_camera *camera);//debug?
 double				distance_between(t_point *first, t_point *second);
 double				line_length(t_line *line);
 void				normalize_angle(double *angle);
