@@ -15,12 +15,14 @@ NAME =			wolf3d
 CC =			gcc
 FLAGS =			-Wall -Werror -Wextra -g
 
+SRCS =			srcs/
+INCLUDES =		includes/
 LIBFT =                 libft/
 LIBFT_INCLUDES =	$(LIBFT)/includes
 X11 =                   /usr/X11/lib
 MLX =                   minilibx/
 
-INC_FLAGS =             -I $(LIBFT_INCLUDES) -I $(MLX)
+INC_FLAGS =             -I $(INCLUDES)-I $(LIBFT_INCLUDES) -I $(MLX)
 LIB_FLAGS =             -L $(LIBFT) -L $(X11) -L $(MLX) -lft -lmlx -lXext -lX11
 
 COMPILED =		main.o \
@@ -46,7 +48,7 @@ $(NAME): $(COMPILED)
 	@$(CC) $(FLAGS) -o $(NAME) $(LIB_FLAGS) $(COMPILED)
 	@echo "made" $(NAME)
 
-$(COMPILED): %.o: %.c
+$(COMPILED): %.o: $(SRCS)/%.c
 	@$(CC) -c $(FLAGS) $(INC_FLAGS) $< -o $@
 
 clean:

@@ -29,10 +29,11 @@
 */
 
 # include "libft.h"
+# include "get_next_line.h"
+# include "ft_printf.h"
 # include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h> // debug
 
 # define RADIANS_TO_DEGREES(RADIANS) (RADIANS * 180 / M_PI)
 # define DEGREES_TO_RADIANS(RADIANS) (RADIANS * M_PI / 180)
@@ -64,7 +65,6 @@
 
 # define SMALLER(FIRST, SECOND) ((FIRST) < (SECOND) ? (FIRST) : (SECOND))
 # define GREATER(FIRST, SECOND) ((FIRST) > (SECOND) ? (FIRST) : (SECOND))
-
 
 typedef struct		s_point
 {

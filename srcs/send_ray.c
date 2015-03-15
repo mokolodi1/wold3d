@@ -19,6 +19,7 @@
 static void			set_vertical(t_ray *ray, t_map *map, t_point start
 								 , double slope)
 {
+	
 	// check to see if slope is bad
 	(void)ray;
 	(void)map;
