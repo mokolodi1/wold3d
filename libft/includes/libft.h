@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/15 00:37:46 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 17:12:27 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ typedef char		t_bool;
 /*
 ** memory
 */
-int					ft_memcmp(const void *original, const void *new, size_t len);
+int					ft_memcmp(const void *original, const void *new
+															, size_t len);
 void				*ft_memcpy(void *dest, const void *source, size_t len);
-void				*ft_memccpy(void *dest, const void *source, int c, size_t len);
+void				*ft_memccpy(void *dest, const void *source, int c
+															, size_t len);
 void				*ft_memmove(void *dest, const void *source, size_t len);
 void				*ft_memset(void *destination, int int_value, size_t len);
 void				*ft_memchr(const void *haystack, int needle, size_t len);
@@ -50,6 +52,7 @@ int					ft_isprint(int c);
 int					ft_isspace(int c);
 void				ft_strtolower(char *string);
 void				ft_strtoupper(char *string);
+int					ft_is_valid_int(char *string);
 
 /*
 ** string
@@ -99,20 +102,21 @@ void				ft_putcharn(char c, size_t number);
 void				ft_putcharn_fd(char c, size_t number, int file_descriptor);
 void				ft_putstr(char const *source);
 void				ft_putstr_fd(char const *source, int file_descriptor);
-void				ft_putstr_literal_fd(char const *source, int file_descriptor);
+void				ft_putstr_literal_fd(char const *source
+											, int file_descriptor);
 void				ft_putstr_justify_right(char *string
-										, size_t total
-										, char fill);
+											, size_t total
+											, char fill);
 void				ft_putstrn(char const *source, size_t max_length);
 void				ft_putstrn_fd(char const *source, size_t max_length
-								, int file_descriptor);
+											, int file_descriptor);
 void				ft_putendl(char const *source);
 void				ft_putendl_fd(char const *source, int file_descriptor);
 void				ft_putendl_exit(char const *source, int exit_code);
 void				ft_putnbr(int number);
 void				ft_putnbr_justify_right(int number
-										, size_t total
-										, char fill);
+											, size_t total
+											, char fill);
 void				ft_putnbr_fd(int number, int file_descriptor);
 void				ft_putnbr_large_fd(intmax_t number, int file_descriptor);
 void				ft_putulonglong(unsigned long long number);
@@ -160,25 +164,6 @@ void				ft_intswp(int *first, int *second);
 int					ft_ptrequ(const void *first, const void *second);
 
 /*
-** get_next_line
-*/
-
-# define BUF_SIZE							1
-# define SPILL_MULT							2
-# define MAX_FD								100
-
-typedef struct		s_stock
-{
-	char	*spill;
-	long	length;
-	long	lu;
-	int		read_ret;
-	char	*line_end;
-}					t_stock;
-
-int					get_next_line(int fd, char **line);
-
-/*
 ** linked lists
 */
 
@@ -217,13 +202,13 @@ void				ft_list_sort(t_list **first, int (*compare)(void*, void*));
 ** data array starts at 1 (data[0] is always NULL)
 */
 
-typedef struct	s_priority_queue
+typedef struct		s_priority_queue
 {
-	void	**data;
-	size_t	data_count;
-	size_t	element_count;
-	int		(*compare)(void*, void*);
-}				t_priority_queue;
+	void			**data;
+	size_t			data_count;
+	size_t			element_count;
+	int				(*compare)(void*, void*);
+}					t_priority_queue;
 
 t_priority_queue	*ft_pq_create_new(int (*compare)(void*, void*));
 void				ft_pq_add(t_priority_queue *priority_queue, void *element);

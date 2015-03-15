@@ -15,11 +15,12 @@ NAME =			wolf3d
 CC =			gcc
 FLAGS =			-Wall -Werror -Wextra -g
 
-LIBFT =                 "libft/"
-X11 =                   "/usr/X11/lib"
-MLX =                   "minilibx/"
+LIBFT =                 libft/
+LIBFT_INCLUDES =	$(LIBFT)/includes
+X11 =                   /usr/X11/lib
+MLX =                   minilibx/
 
-INC_FLAGS =             -I $(LIBFT) -I $(MLX)
+INC_FLAGS =             -I $(LIBFT_INCLUDES) -I $(MLX)
 LIB_FLAGS =             -L $(LIBFT) -L $(X11) -L $(MLX) -lft -lmlx -lXext -lX11
 
 COMPILED =		main.o \
