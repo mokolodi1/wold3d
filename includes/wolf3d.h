@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/09 15:45:58 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/16 18:50:31 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,31 @@
 # include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
 
 # define RADIANS_TO_DEGREES(RADIANS) (RADIANS * 180 / M_PI)
 # define DEGREES_TO_RADIANS(RADIANS) (RADIANS * M_PI / 180)
 
-# define WINDOW_WIDTH			400
-# define WINDOW_HEIGHT			400
+# define WINDOW_WIDTH			10
+# define WINDOW_HEIGHT			10
 
 # define MAP_PADDING			5
 
-# define KEY_ESC            	65307
-# define KEY_UP_ARROW			65362
-# define KEY_LEFT_ARROW			65361
-# define KEY_DOWN_ARROW			65364
-# define KEY_RIGHT_ARROW		65363
+# define KEY_ESC            	53
+# define KEY_UP_ARROW			126
+# define KEY_LEFT_ARROW			123
+# define KEY_DOWN_ARROW			125
+# define KEY_RIGHT_ARROW		124
+
+# define KEY_Q					12
+# define KEY_W					13
+# define KEY_E					14
+# define KEY_A					0
+# define KEY_S					1
+# define KEY_D					2
+
+# define KEY_COMMA				43
+# define KEY_PERIOD				47
 
 /*
 ** scope = multiplier for vertical part of triangle in atan
@@ -55,7 +66,7 @@
 
 # define DEGREE					DEGREES_TO_RADIANS(1)
 # define SCOPE					1
-# define VIEW_WIDTH				DEGREES_TO_RADIANS(90)
+# define VIEW_WIDTH				DEGREES_TO_RADIANS(180)
 # define VIEW_HEIGHT			(VIEW_WIDTH * (WINDOW_HEIGHT / WINDOW_WIDTH))
 
 # define VELOCITY				.2

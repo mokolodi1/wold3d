@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/09 14:21:26 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/16 14:43:09 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void			draw_segment(t_environment *env, int x_pixel
 	{
 		if (ft_abs(env->window_height / 2 - i) < wall_height / 2)
 			mlx_pixel_put(env->mlx, env->window, x_pixel, i
-							, get_color(ray.color));
+							, get_color(ray.direction));
 		else
 			mlx_pixel_put(env->mlx, env->window, x_pixel, i,
 						  BACKGROUND_COLOR);

@@ -6,24 +6,24 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/09 15:45:36 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/16 14:55:40 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =			wolf3d
 
 CC =			gcc
-FLAGS =			-Wall -Werror -Wextra -g
+FLAGS =			-Wall -Werror -Wextra -g -O0
 
-SRCS =			srcs/
-INCLUDES =		includes/
-LIBFT =                 libft/
+SRCS =			srcs
+INCLUDES =		includes
+LIBFT =                 libft
 LIBFT_INCLUDES =	$(LIBFT)/includes
-X11 =                   /usr/X11/lib
-MLX =                   minilibx/
+MLX =                   minilibx_macos
 
 INC_FLAGS =             -I $(INCLUDES) -I $(LIBFT_INCLUDES) -I $(MLX)
-LIB_FLAGS =             -L $(LIBFT) -L $(X11) -L $(MLX) -lft -lmlx -lXext -lX11
+LIB_FLAGS =             -L $(LIBFT) -lft -L $(MLX) -lmlx \
+						-framework OpenGL -framework AppKit
 
 COMPILED =		main.o \
 				read_map.o \
@@ -33,7 +33,7 @@ COMPILED =		main.o \
 				move_camera.o \
 				rotate_camera.o \
 				draw.o \
-				old_send_ray.o \
+				send_ray.o \
 				is_on_map.o \
 				distance_between.o \
 				line_length.o \

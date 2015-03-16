@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:38 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/04 22:34:53 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/16 17:01:48 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void				print_map(t_map *map) // debug
 	int				outer;
 	int				inner;
 
-	printf("map->width = %d\n", map->width);
 	printf("map->height = %d\n", map->height);
+	printf("map->width = %d\n", map->width);
 	outer = 0;
 	while (outer < map->height)
 	{
@@ -39,45 +39,45 @@ void				print_map(t_map *map) // debug
 	}
 }
 
-static void			set_new_map(t_map *map, int **new_data
-								, int new_height, int new_width)
-{
-	int				i;
+/* static void			set_new_map(t_map *map, int **new_data */
+/* 								, int new_height, int new_width) */
+/* { */
+/* 	int				i; */
 
-	i = 0;
-	while (i < map->height)
-	{
-		free(map->data[i]);
-		i++;
-	}
-	free(map->data);
-	map->data = new_data;
-	map->height = new_height;
-	map->width = new_width;
-}
+/* 	i = 0; */
+/* 	while (i < map->height) */
+/* 	{ */
+/* 		free(map->data[i]); */
+/* 		i++; */
+/* 	} */
+/* 	free(map->data); */
+/* 	map->data = new_data; */
+/* 	map->height = new_height; */
+/* 	map->width = new_width; */
+/* } */
 
-static void			pad_map(t_map *map)
-{
-	int				**new_data;
-	int				new_height;
-	int				new_width;
-	int				i;
+/* static void			pad_map(t_map *map) */
+/* { */
+/* 	int				**new_data; */
+/* 	int				new_height; */
+/* 	int				new_width; */
+/* 	int				i; */
 
-	new_height = map->height + MAP_PADDING * 2;
-	new_width = map->width + MAP_PADDING * 2;
-	new_data = malloc(new_height * sizeof(int*));
-	i = 0;
-	while (i < new_height)
-	{
-		new_data[i] = malloc(new_width * sizeof(int));
-		ft_bzero(new_data[i], new_width * sizeof(int));
-		if (i >= MAP_PADDING && i < MAP_PADDING + map->height)
-			ft_memcpy(new_data[i] + MAP_PADDING
-					  , map->data[i - MAP_PADDING], map->width * sizeof(int));
-		i++;
-	}
-	set_new_map(map, new_data, new_height, new_width);
-}
+/* 	new_height = map->height + MAP_PADDING * 2; */
+/* 	new_width = map->width + MAP_PADDING * 2; */
+/* 	new_data = malloc(new_height * sizeof(int*)); */
+/* 	i = 0; */
+/* 	while (i < new_height) */
+/* 	{ */
+/* 		new_data[i] = malloc(new_width * sizeof(int)); */
+/* 		ft_bzero(new_data[i], new_width * sizeof(int)); */
+/* 		if (i >= MAP_PADDING && i < MAP_PADDING + map->height) */
+/* 			ft_memcpy(new_data[i] + MAP_PADDING */
+/* 					  , map->data[i - MAP_PADDING], map->width * sizeof(int)); */
+/* 		i++; */
+/* 	} */
+/* 	set_new_map(map, new_data, new_height, new_width); */
+/* } */
 
 int					main(int argc, char **argv)
 {
@@ -88,7 +88,7 @@ int					main(int argc, char **argv)
 	ft_bzero(&map, sizeof(t_map));
 	read_map(&map, argv[1]);
 	print_map(&map);
-	pad_map(&map);
+	//pad_map(&map);
 	printf("added padding...\n");
 	print_map(&map);
 	setup_and_start_viewer(&map);
