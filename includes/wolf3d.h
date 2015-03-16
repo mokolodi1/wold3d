@@ -90,7 +90,7 @@ typedef enum		e_direction
 typedef struct		s_ray
 {
 	double			distance;
-	t_direction		color;
+	t_direction		direction;
 }					t_ray;
 
 typedef struct		s_map
@@ -127,8 +127,6 @@ void				rotate_camera(t_environment *env, double delta_angle);
 void            	draw(t_environment *env);
 void				send_ray(t_ray *ray, t_map *map, t_point *location
 										, double viewing_angle);
-int					look_for_walls(t_map *map, t_camera *camera
-										, t_line *current);
 int					is_on_map(t_map *map, t_point *point);
 
 double				distance_between(t_point *first, t_point *second);

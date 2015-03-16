@@ -22,7 +22,7 @@ LIBFT_INCLUDES =	$(LIBFT)/includes
 X11 =                   /usr/X11/lib
 MLX =                   minilibx/
 
-INC_FLAGS =             -I $(INCLUDES)-I $(LIBFT_INCLUDES) -I $(MLX)
+INC_FLAGS =             -I $(INCLUDES) -I $(LIBFT_INCLUDES) -I $(MLX)
 LIB_FLAGS =             -L $(LIBFT) -L $(X11) -L $(MLX) -lft -lmlx -lXext -lX11
 
 COMPILED =		main.o \
@@ -34,7 +34,6 @@ COMPILED =		main.o \
 				rotate_camera.o \
 				draw.o \
 				old_send_ray.o \
-				look_for_walls.o \
 				is_on_map.o \
 				distance_between.o \
 				line_length.o \
