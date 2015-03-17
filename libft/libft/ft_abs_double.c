@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance_between.c                                 :+:      :+:    :+:   */
+/*   ft_abs_double.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/03 13:50:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/03 13:50:52 by tfleming         ###   ########.fr       */
+/*   Created: 2015/03/17 14:11:30 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/17 14:11:56 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "libft.h"
 
-double				distance_between(t_point *first, t_point *second)
+double				ft_abs_double(double number)
 {
-	return (sqrt(pow(second->x - first->x, 2) + pow(second->y - first->y, 2)));
+	if (number < 0)
+		return (-number);
+	return (number);
 }

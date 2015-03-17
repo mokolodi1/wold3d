@@ -5,3 +5,5 @@ remove stdio.h include
 change to new mlx on Yosemite
 fix map issues
 add images to increase speed
+
+check to see if all files and functions are needed (Makefile, .h)

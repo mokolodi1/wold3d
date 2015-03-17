@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/11 17:19:21 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/17 14:12:07 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -106,6 +106,7 @@ FT_COMPILED =		ft_islower.o \
 					ft_put_clear_line.o \
 					ft_abs.o \
 					ft_abs_large.o \
+					ft_abs_double.o \
 					ft_arrlen.o \
 					ft_array_expand.o \
 					ft_array_reverse.o \

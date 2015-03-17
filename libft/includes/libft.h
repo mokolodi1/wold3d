@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 17:12:27 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/17 14:12:18 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int					ft_count_digits_ularge(uintmax_t number);
 
 int					ft_abs(int number);
 intmax_t			ft_abs_large(intmax_t number);
+double				ft_abs_double(double number);
 int					ft_min(int a, int b);
 uintmax_t			ft_min_umax(uintmax_t a, uintmax_t b);
 int					ft_max(int a, int b);

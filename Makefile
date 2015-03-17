@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/16 14:55:40 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/17 14:50:31 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -34,9 +34,6 @@ COMPILED =		main.o \
 				rotate_camera.o \
 				draw.o \
 				send_ray.o \
-				is_on_map.o \
-				distance_between.o \
-				line_length.o \
 				normalize_angle.o \
 				mlx_rgb_to_color.o
 

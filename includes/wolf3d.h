@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/16 18:50:31 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/17 16:49:55 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h>
+# include <stdio.h> // nope
 
 # define RADIANS_TO_DEGREES(RADIANS) (RADIANS * 180 / M_PI)
 # define DEGREES_TO_RADIANS(RADIANS) (RADIANS * M_PI / 180)
@@ -76,6 +76,13 @@
 
 # define SMALLER(FIRST, SECOND) ((FIRST) < (SECOND) ? (FIRST) : (SECOND))
 # define GREATER(FIRST, SECOND) ((FIRST) > (SECOND) ? (FIRST) : (SECOND))
+
+/*
+** yay for one-line defines
+*/
+
+# define DIST(X1, Y1, X2, Y2) (sqrt(pow((X2) - (X1), 2) + pow((Y2) - (Y1), 2)))
+# define DISTANCE(X1, Y1, X2, Y2) (DIST((X1), (Y1), (X2), (Y2)))
 
 typedef struct		s_point
 {
@@ -135,15 +142,10 @@ int					key_hook(int keycode, t_environment *env);
 void				move_camera(double x, double y, t_environment *env);
 void				rotate_camera(t_environment *env, double delta_angle);
 
-void            	draw(t_environment *env);
+void				draw(t_environment *env);
 void				send_ray(t_ray *ray, t_map *map, t_point *location
-										, double viewing_angle);
-int					is_on_map(t_map *map, t_point *point);
-
-double				distance_between(t_point *first, t_point *second);
-double				line_length(t_line *line);
+							, double viewing_angle);
 void				normalize_angle(double *angle);
-
 int					mlx_rgb_to_color(int red, int green, int blue);
 
 #endif

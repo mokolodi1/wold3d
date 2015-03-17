@@ -6,17 +6,21 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:46 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/05 16:37:06 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/17 11:33:33 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
+/*
+** camera starts facing towards top of map
+*/
+
 static void			setup_camera(t_camera *camera, t_map *map)
 {
 	camera->location.x = ((double)map->width) / 2;
 	camera->location.y = ((double)map->height) / 2;
-	camera->direction = 0;
+	camera->direction = M_PI_2;
 }
 
 static void			setup_environment(t_environment *env, t_map *map)

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 18:27:52 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/16 20:14:29 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/17 16:42:23 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,45 @@
 */
 
 static void			set_vertical(t_ray *ray, t_map *map, t_point *start
-								 , double viewing_angle)
+								 , double angle)
 {
-	t_point			current;
-	double			delta_y;
+	int				current_x;
 	int				delta_x;
+	double			current_y;
+	double			delta_y;
 
-	fprintf(stdout, "\n\nset_vertical viewing_angle = %f degrees\n"
-			, RADIANS_TO_DEGREES(viewing_angle));
-	delta_x = (viewing_angle < M_PI ? 1 : -1);
-	delta_y = - cos(viewing_angle) / sin(viewing_angle);
-	current.x = floor(start->x) + (viewing_angle < M_PI);
-	current.y += delta_y * (viewing_angle < M_PI
-				? (start->x - floor(start->x)) : (ceil(start->x) - start->x));
-	fprintf(stdout, "start = (%f, %f)\t", start->x, start->y);
-	fprintf(stdout, "current = (%f, %f)\t", current.x, current.y);
-	fprintf(stdout, "deltas = (%d, %f)\t", delta_x, delta_y);
-	fprintf(stdout, "\n");
-	while ((viewing_angle < M_PI ? current.x >= 4 : current.x <= map->width)
-		   && current.y >= 0 && current.y <= map->width)
+	delta_x = ((angle < M_PI_2 || angle > M_PI_2 + M_PI) ? 1 : -1);
+	delta_y = -sin(angle) / cos(angle) * delta_x;
+	if (start->x < 0 || start->x > map->width)
+		current_x = (start->x < 0 ? 0 : map->width);
+	else
+		current_x = floor(start->x) + (delta_x == 1);
+	current_y = start->y + delta_y * ft_abs_double(current_x - start->x);
+	if ((start->x < 0 || start->x > map->width)
+			&& (current_y < 0 || current_y > map->height))
+		return ;
+	while ((delta_x == 1 ? current_x < map->width : current_x >= 0)
+		   && (delta_y > 0 ? current_y <= map->height : current_y >= 0))
 	{
-		if (map->data[(int)current.y][(int)current.x])
+		if (map->data[(int)floor(current_y)][current_x]
+			&& map->data[(int)floor(current_y + 1)][current_x])
 		{
-			ray->distance = distance_between(start, &current);
-			ray->direction = (current.y - floor(current.y) > 0 ? NORTH : SOUTH);
-			fprintf(stdout, "found wall (distance = %f)\n", ray->distance);
+			ray->distance = DISTANCE(start->x, start->y, current_x, current_y);
+			ray->direction = (delta_x == 1 ? EAST : WEST);
 			return ;
 		}
-		fprintf(stdout, "moving along... now at (%f, %f)\t"
-				, current.x, current.y);
-		current.y += delta_y;
-		current.x += delta_x;
+		current_y += delta_y;
+		current_x += delta_x;
 	}
-	fprintf(stdout, "none found\n");
 }
 
 static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
-								 , double viewing_angle)
+								 , double angle)
 {
 	(void)ray;
 	(void)map;
 	(void)start;
-	(void)viewing_angle;
+	(void)angle;
 }
 
 void				send_ray(t_ray *ray, t_map *map, t_point *location
@@ -69,9 +66,9 @@ void				send_ray(t_ray *ray, t_map *map, t_point *location
 
 	vertical.distance = -1;
 	horizontal.distance = -1;
-	if (cos(viewing_angle))
-		set_vertical(&vertical, map, location, viewing_angle);
 	if (sin(viewing_angle))
+		set_vertical(&vertical, map, location, viewing_angle);
+	if (cos(viewing_angle))
 		set_horizontal(&horizontal, map, location, viewing_angle);
 	if (vertical.distance != -1 && horizontal.distance != -1)
 		*ray = (vertical.distance < horizontal.distance ? vertical: horizontal);

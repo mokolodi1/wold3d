@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/16 15:06:24 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/17 11:36:56 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void			switch_keys(int keycode, t_environment *env)
 		move_camera(sin(env->camera.direction + M_PI_2)
 					, cos(env->camera.direction + M_PI_2), env);
 	else if (keycode == KEY_PERIOD || keycode == KEY_E)
-		rotate_camera(env, ANGULAR_VELOCITY);
-	else if (keycode == KEY_COMMA || keycode == KEY_Q)
 		rotate_camera(env, -ANGULAR_VELOCITY);
+	else if (keycode == KEY_COMMA || keycode == KEY_Q)
+		rotate_camera(env, ANGULAR_VELOCITY);
 }
 
 int					key_hook(int keycode, t_environment *env)

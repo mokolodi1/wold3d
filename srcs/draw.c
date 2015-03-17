@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/16 14:43:09 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/17 12:15:51 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,14 @@ void            	draw(t_environment *env)
 	int				i;
 
 	increment = VIEW_WIDTH / env->window_width;
-	direction = env->camera.direction - VIEW_WIDTH / 2
-		+ increment / 2;
+	direction = env->camera.direction + VIEW_WIDTH / 2
+		- increment / 2;
 	i = 0;
 	while (i < env->window_width)
 	{
 		normalize_angle(&direction);
 		draw_segment(env, i, direction);
-		direction += increment;
+		direction -= increment;
 		i++;
-//		printf("\n\n");
 	}
-//	printf("================================================== end of draw\n");
 }
