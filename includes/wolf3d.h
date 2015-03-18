@@ -39,8 +39,8 @@
 # define RADIANS_TO_DEGREES(RADIANS) (RADIANS * 180 / M_PI)
 # define DEGREES_TO_RADIANS(RADIANS) (RADIANS * M_PI / 180)
 
-# define WINDOW_WIDTH			10
-# define WINDOW_HEIGHT			10
+# define WINDOW_WIDTH			200
+# define WINDOW_HEIGHT			200
 
 # define MAP_PADDING			5
 
@@ -123,6 +123,10 @@ typedef struct		s_camera
 	t_point			location;
 	double			direction;
 }					t_camera;
+
+/*
+** map is a pointer in t_environment because it's declared in the main
+*/
 
 typedef struct		s_environment
 {
