@@ -13,7 +13,7 @@
 NAME =			wolf3d
 
 CC =			gcc
-FLAGS =			-Wall -Werror -Wextra -g -O0
+CFLAGS =			-Wall -Werror -Wextra -g -O0
 
 SRCS =			srcs
 INCLUDES =		includes
@@ -41,11 +41,11 @@ all: $(NAME)
 
 $(NAME): $(COMPILED)
 	@make -C $(LIBFT)
-	@$(CC) $(FLAGS) -o $(NAME) $(LIB_FLAGS) $(COMPILED)
+	@$(CC) $(CFLAGS) -o $(NAME) $(LIB_FLAGS) $(COMPILED)
 	@echo "made" $(NAME)
 
 $(COMPILED): %.o: $(SRCS)/%.c
-	@$(CC) -c $(FLAGS) $(INC_FLAGS) $< -o $@
+	@$(CC) -c $(CFLAGS) $(INC_FLAGS) $< -o $@
 
 clean:
 #	@make -C $(LIBFT) clean
