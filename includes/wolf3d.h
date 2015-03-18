@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/17 16:49:55 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/18 20:47:46 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@
 # define WINDOW_WIDTH			200
 # define WINDOW_HEIGHT			200
 
-# define MAP_PADDING			5
-
 # define KEY_ESC            	53
 # define KEY_UP_ARROW			126
 # define KEY_LEFT_ARROW			123
 # define KEY_DOWN_ARROW			125
 # define KEY_RIGHT_ARROW		124
+# define KEY_COMMA				43
+# define KEY_PERIOD				47
 
 # define KEY_Q					12
 # define KEY_W					13
@@ -57,20 +57,19 @@
 # define KEY_S					1
 # define KEY_D					2
 
-# define KEY_COMMA				43
-# define KEY_PERIOD				47
-
 /*
 ** scope = multiplier for vertical part of triangle in atan
 */
 
 # define DEGREE					DEGREES_TO_RADIANS(1)
 # define SCOPE					1
-# define VIEW_WIDTH				DEGREES_TO_RADIANS(180)
+# define VIEW_WIDTH				DEGREES_TO_RADIANS(90)
 # define VIEW_HEIGHT			(VIEW_WIDTH * (WINDOW_HEIGHT / WINDOW_WIDTH))
 
 # define VELOCITY				.2
 # define ANGULAR_VELOCITY		(DEGREE * 10)
+
+# define WALL_DISTANCE			.1
 
 # define BACKGROUND_COLOR		0x000000
 
