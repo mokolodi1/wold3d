@@ -14,6 +14,17 @@
 
 /*
 ** set_vertical = finds walls that are vertical on the map
+** set_horizontal = finds walls that are horizontal on the map
+*/
+
+/*
+** I could make this more optimized (do both loops in the same
+** function or something), but this is very easy to understand and
+** runs without a problem under normal circumstances.
+*/
+
+/*
+** not sure if the (int)floor(current_x) is redundant
 */
 
 static void			set_vertical(t_ray *ray, t_map *map, t_point *start
@@ -52,10 +63,35 @@ static void			set_vertical(t_ray *ray, t_map *map, t_point *start
 static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
 								 , double angle)
 {
-	(void)ray;
-	(void)map;
-	(void)start;
-	(void)angle;
+	int				current_y;
+	int				delta_y;
+	double			current_x;
+	double			delta_x;
+
+	delta_y = ((angle > M_PI) ? 1 : -1);
+	delta_x = -cos(angle) / sin(angle) * delta_y;
+	if (start->y < 0 || start->y > map->width)
+		current_y = (start->y < 0 ? 0 : map->width);
+	else
+		current_y = floor(start->y) + (delta_y == 1);
+	current_x = start->x + delta_x * ft_abs_double(current_y - start->y);
+	if ((start->y < 0 || start->y > map->height)
+			&& (current_x < 0 || current_x > map->width))
+		return ;
+	while ((delta_y == 1 ? current_y < map->width : current_y >= 0)
+		   && (delta_x > 0 ? current_x <= map->height : current_x >= 0))
+	{
+		if (map->data[current_y][(int)floor(current_x)]
+			&& map->data[current_y][(int)floor(current_x + 1)])
+		{
+			ray->distance = DISTANCE(start->y, start->x, current_y, current_x);
+			ray->direction = (delta_y == 1 ? NORTH : SOUTH);
+			return ;
+		}
+		current_x += delta_x;
+		current_y += delta_y;
+	}
+	printf("no walls found\n");
 }
 
 void				send_ray(t_ray *ray, t_map *map, t_point *location

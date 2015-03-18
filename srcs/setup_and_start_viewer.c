@@ -18,8 +18,8 @@
 
 static void			setup_camera(t_camera *camera, t_map *map)
 {
-	camera->location.x = ((double)map->width) / 2;
-	camera->location.y = ((double)map->height) / 2;
+	camera->location.x = ((double)map->width - 1) / 2;
+	camera->location.y = ((double)map->height - 1) / 2;
 	camera->direction = M_PI_2;
 }
 
