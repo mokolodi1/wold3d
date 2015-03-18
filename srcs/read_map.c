@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:40 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/03 13:53:40 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/18 20:58:07 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ static int			do_line(int fd, int **ints, int *width)
 	while (i < *width)
 	{
 		(*ints)[i] = ft_atoi(split[i]);
+		if (!ft_is_valid_int(split[i])
+			|| !((*ints)[i] == 1 || (*ints)[i] == 0))
+		{
+			ft_printf("Invalid token in map file: %s\n", split[i]);
+			exit(1);
+		}
 		i++;
 	}
 	ft_strsplit_free(split);
@@ -83,6 +89,8 @@ void				read_map(t_map *map, char *filename)
 	ft_list_push_back(&ints_list, curr_ints);
 	map->height = 1;
 	process_rest(fd, &ints_list, map->width, &map->height);
+	if (map->width <= 1 || map->height <= 1)
+		ft_putendl_exit("Map width and hight must be greater than one", 1);
 	list_to_map(ints_list, map);
 	close(fd);
 }
