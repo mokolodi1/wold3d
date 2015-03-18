@@ -42,11 +42,8 @@ static void			set_vertical(t_ray *ray, t_map *map, t_point *start
 	else
 		current_x = floor(start->x) + (delta_x == 1);
 	current_y = start->y + delta_y * ft_abs_double(current_x - start->x);
-	if ((start->x < 0 || start->x > map->width)
-			&& (current_y < 0 || current_y > map->height))
-		return ;
 	while ((delta_x == 1 ? current_x < map->width : current_x >= 0)
-		   && (delta_y > 0 ? current_y <= map->height : current_y >= 0))
+		   && (delta_y > 0 ? current_y < map->height - 1: current_y >= 0))
 	{
 		if (map->data[(int)floor(current_y)][current_x]
 			&& map->data[(int)floor(current_y + 1)][current_x])
@@ -75,11 +72,8 @@ static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
 	else
 		current_y = floor(start->y) + (delta_y == 1);
 	current_x = start->x + delta_x * ft_abs_double(current_y - start->y);
-	if ((start->y < 0 || start->y > map->height)
-			&& (current_x < 0 || current_x > map->width))
-		return ;
 	while ((delta_y == 1 ? current_y < map->width : current_y >= 0)
-		   && (delta_x > 0 ? current_x <= map->height : current_x >= 0))
+		   && (delta_x > 0 ? current_x < map->height - 1 : current_x >= 0))
 	{
 		if (map->data[current_y][(int)floor(current_x)]
 			&& map->data[current_y][(int)floor(current_x + 1)])
@@ -91,7 +85,6 @@ static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
 		current_x += delta_x;
 		current_y += delta_y;
 	}
-	printf("no walls found\n");
 }
 
 void				send_ray(t_ray *ray, t_map *map, t_point *location
