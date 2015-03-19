@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 20:26:30 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/19 22:13:48 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@
 # include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h> // nope
 
 # define RADIANS_TO_DEGREES(RADIANS) (RADIANS * 180 / M_PI)
 # define DEGREES_TO_RADIANS(RADIANS) (RADIANS * M_PI / 180)
 
-# define WINDOW_WIDTH			200
-# define WINDOW_HEIGHT			200
+# define WINDOW_WIDTH			1000
+# define WINDOW_HEIGHT			1000
 
 # define KEY_ESC            	53
 # define KEY_UP_ARROW			126
@@ -73,7 +72,7 @@
 */
 
 # define VELOCITY				.1
-# define ANGULAR_VELOCITY		(DEGREE * 3)
+# define ANGULAR_VELOCITY		(DEGREE * 6)
 # define WALL_DISTANCE			.1
 
 # define RGB_TO_COLOR(RED, GREEN, BLUE) (RED * 256 * 256 + GREEN * 256 + BLUE)
@@ -81,6 +80,7 @@
 # define COLOR_GREEN			RGB_TO_COLOR(0, 255, 0)
 # define COLOR_BLUE				RGB_TO_COLOR(0, 0, 255)
 # define COLOR_YELLOW			RGB_TO_COLOR(255, 255, 0)
+# define COLOR_WHITE			RGB_TO_COLOR(255, 255, 255)
 # define COLOR_BLACK			RGB_TO_COLOR(0, 0, 0)
 
 /*

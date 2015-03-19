@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 21:14:23 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/19 22:11:53 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ static int			convert_to_pixels(double distance)
 {
 	return ((atan(((double)SCOPE / 2) / distance) / DEGREE)
 			* 5 / 200 * WINDOW_HEIGHT);
+}
+
+static void			set_image_data(t_environment *env, int x, int y, int color)
+{
+	env->image.data[y * env->window_width + x] = color;
 }
 
 static void			draw_segment(t_environment *env, int x_pixel
@@ -32,17 +37,17 @@ static void			draw_segment(t_environment *env, int x_pixel
 	y_pixel = 0;
 	while (y_pixel < ceiling_part)
 	{
-		env->image.data[y_pixel * env->window_width + x_pixel] = COLOR_BLACK;
+		set_image_data(env, x_pixel, y_pixel, COLOR_BLACK);
 		y_pixel++;
 	}
 	while (y_pixel < wall_height + ceiling_part)
 	{
-		env->image.data[y_pixel * env->window_width + x_pixel] = ray.color;
+		set_image_data(env, x_pixel, y_pixel, ray.color);
 		y_pixel++;
 	}
 	while (y_pixel < env->window_height)
 	{
-		env->image.data[y_pixel * env->window_width + x_pixel] = COLOR_BLACK;
+		set_image_data(env, x_pixel, y_pixel, COLOR_BLACK);
 		y_pixel++;
 	}
 }
