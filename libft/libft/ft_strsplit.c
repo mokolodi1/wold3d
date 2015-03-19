@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/08 12:12:28 by tfleming          #+#    #+#             */
-/*   Updated: 2014/11/09 19:04:09 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/19 17:27:09 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static char		*get_next_word(const char **original, char split_on)
 		new[i] = (*original)[i];
 		i++;
 	}
+	new[i] = '\0';
 	*original += length + 1;
 	return (new);
 }

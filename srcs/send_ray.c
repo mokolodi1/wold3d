@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 18:27:52 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/17 16:42:23 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/19 20:28:38 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ static void			set_vertical(t_ray *ray, t_map *map, t_point *start
 	else
 		current_x = floor(start->x) + (delta_x == 1);
 	current_y = start->y + delta_y * ft_abs_double(current_x - start->x);
-	while ((delta_x == 1 ? current_x < map->width : current_x >= 0)
-		   && (delta_y > 0 ? current_y < map->height - 1: current_y >= 0))
+	while (current_x < map->width && current_x >= 0
+		   && current_y < map->height - 1 && current_y >= 0)
 	{
 		if (map->data[(int)floor(current_y)][current_x]
 			&& map->data[(int)floor(current_y + 1)][current_x])
 		{
 			ray->distance = DISTANCE(start->x, start->y, current_x, current_y);
-			ray->direction = (delta_x == 1 ? EAST : WEST);
+			ray->color = (delta_x == 1 ? COLOR_GREEN : COLOR_BLUE);
 			return ;
 		}
 		current_y += delta_y;
@@ -67,19 +67,19 @@ static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
 
 	delta_y = ((angle > M_PI) ? 1 : -1);
 	delta_x = -cos(angle) / sin(angle) * delta_y;
-	if (start->y < 0 || start->y > map->width)
-		current_y = (start->y < 0 ? 0 : map->width);
+	if (start->y < 0 || start->y > map->height)
+		current_y = (start->y < 0 ? 0 : map->height);
 	else
 		current_y = floor(start->y) + (delta_y == 1);
 	current_x = start->x + delta_x * ft_abs_double(current_y - start->y);
-	while ((delta_y == 1 ? current_y < map->width : current_y >= 0)
-		   && (delta_x > 0 ? current_x < map->height - 1 : current_x >= 0))
+	while (current_y < map->height && current_y >= 0
+		   && current_x < map->width - 1 && current_x >= 0)
 	{
 		if (map->data[current_y][(int)floor(current_x)]
 			&& map->data[current_y][(int)floor(current_x + 1)])
 		{
 			ray->distance = DISTANCE(start->y, start->x, current_y, current_x);
-			ray->direction = (delta_y == 1 ? NORTH : SOUTH);
+			ray->color = (delta_y == 1 ? COLOR_RED : COLOR_YELLOW);
 			return ;
 		}
 		current_x += delta_x;
@@ -93,6 +93,7 @@ void				send_ray(t_ray *ray, t_map *map, t_point *location
 	t_ray			vertical;
 	t_ray			horizontal;
 
+	
 	vertical.distance = -1;
 	horizontal.distance = -1;
 	if (sin(viewing_angle))

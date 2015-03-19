@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/18 20:47:46 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/19 20:26:30 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,22 @@
 # define VIEW_WIDTH				DEGREES_TO_RADIANS(90)
 # define VIEW_HEIGHT			(VIEW_WIDTH * (WINDOW_HEIGHT / WINDOW_WIDTH))
 
-# define VELOCITY				.2
-# define ANGULAR_VELOCITY		(DEGREE * 10)
+/*
+** VELOCITY = amount moved each key press
+** ANGULAR_VELOCITY = amount rotated each key press
+** WALL_DISTANCE = minimum distance between camera and walls
+*/
 
+# define VELOCITY				.1
+# define ANGULAR_VELOCITY		(DEGREE * 3)
 # define WALL_DISTANCE			.1
 
-# define BACKGROUND_COLOR		0x000000
-
-# define SMALLER(FIRST, SECOND) ((FIRST) < (SECOND) ? (FIRST) : (SECOND))
-# define GREATER(FIRST, SECOND) ((FIRST) > (SECOND) ? (FIRST) : (SECOND))
+# define RGB_TO_COLOR(RED, GREEN, BLUE) (RED * 256 * 256 + GREEN * 256 + BLUE)
+# define COLOR_RED				RGB_TO_COLOR(255, 0, 0)
+# define COLOR_GREEN			RGB_TO_COLOR(0, 255, 0)
+# define COLOR_BLUE				RGB_TO_COLOR(0, 0, 255)
+# define COLOR_YELLOW			RGB_TO_COLOR(255, 255, 0)
+# define COLOR_BLACK			RGB_TO_COLOR(0, 0, 0)
 
 /*
 ** yay for one-line defines
@@ -95,11 +102,6 @@ typedef struct		s_line
 	t_point			second;
 }					t_line;
 
-typedef enum		e_direction
-{
-	EAST, NORTH, WEST, SOUTH
-}					t_direction;
-
 /*
 ** distance = -1 ==> no wall found
 */
@@ -107,7 +109,7 @@ typedef enum		e_direction
 typedef struct		s_ray
 {
 	double			distance;
-	t_direction		direction;
+	int				color;
 }					t_ray;
 
 typedef struct		s_map
@@ -123,6 +125,15 @@ typedef struct		s_camera
 	double			direction;
 }					t_camera;
 
+typedef struct		s_image
+{
+	void			*mlx_image;
+	int				*data;
+	int				bits_per_pixel;
+	int				line_size;
+	int				endian;
+}					t_image;
+
 /*
 ** map is a pointer in t_environment because it's declared in the main
 */
@@ -135,6 +146,7 @@ typedef struct		s_environment
 	int				window_width;
 	t_map			*map;
 	t_camera		camera;
+	t_image			image;
 }					t_environment;
 
 void				read_map(t_map *map, char *filename);
@@ -149,6 +161,5 @@ void				draw(t_environment *env);
 void				send_ray(t_ray *ray, t_map *map, t_point *location
 							, double viewing_angle);
 void				normalize_angle(double *angle);
-int					mlx_rgb_to_color(int red, int green, int blue);
 
 #endif

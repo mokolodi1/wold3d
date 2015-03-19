@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:40 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/18 20:58:07 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/19 20:09:00 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ static int			do_line(int fd, int **ints, int *width)
 		if (!ft_is_valid_int(split[i])
 			|| !((*ints)[i] == 1 || (*ints)[i] == 0))
 		{
+			ft_printf("i = %d\n", i);
 			ft_printf("Invalid token in map file: %s\n", split[i]);
 			exit(1);
 		}
 		i++;
 	}
-	ft_strsplit_free(split);
+	if (split && *split)
+		ft_strsplit_free(split);
 	free(line);
 	return (read_ret);
 }
@@ -58,13 +60,13 @@ static void			process_rest(int fd, t_list **int_list
 	}
 }
 
-static void			list_to_map(t_list *ints_list, t_map *map)
+static void			list_to_map(t_list **ints_list, t_map *map)
 {
 	int				i;
 	t_list			*current_ints;
 
-	map->data = malloc(map->width * sizeof(int*));
-	current_ints = ints_list;
+	map->data = malloc(map->height * sizeof(int*));
+	current_ints = *ints_list;
 	i = 0;
 	while (current_ints)
 	{
@@ -72,7 +74,7 @@ static void			list_to_map(t_list *ints_list, t_map *map)
 		i++;
 		current_ints = current_ints->next;
 	}
-	ft_list_clear(&ints_list);
+	ft_list_clear(ints_list);
 }
 
 void				read_map(t_map *map, char *filename)
@@ -91,6 +93,6 @@ void				read_map(t_map *map, char *filename)
 	process_rest(fd, &ints_list, map->width, &map->height);
 	if (map->width <= 1 || map->height <= 1)
 		ft_putendl_exit("Map width and hight must be greater than one", 1);
-	list_to_map(ints_list, map);
+	list_to_map(&ints_list, map);
 	close(fd);
 }
