@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 20:28:28 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/19 21:14:23 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,25 @@ static void			draw_segment(t_environment *env, int x_pixel
 	t_ray			ray;
 	int				wall_height;
 	int				y_pixel;
+	int				ceiling_part;
 
 	send_ray(&ray, env->map, &env->camera.location, direction);
 	wall_height = ray.distance == -1 ? 0 : convert_to_pixels(ray.distance);
+	ceiling_part = (env->window_height - wall_height) / 2;
 	y_pixel = 0;
+	while (y_pixel < ceiling_part)
+	{
+		env->image.data[y_pixel * env->window_width + x_pixel] = COLOR_BLACK;
+		y_pixel++;
+	}
+	while (y_pixel < wall_height + ceiling_part)
+	{
+		env->image.data[y_pixel * env->window_width + x_pixel] = ray.color;
+		y_pixel++;
+	}
 	while (y_pixel < env->window_height)
 	{
-		if (ft_abs(env->window_height / 2 - y_pixel) < wall_height / 2)
-			env->image.data[y_pixel * env->window_width + x_pixel] = ray.color;
-		else
-			env->image.data[y_pixel * env->window_width + x_pixel] = COLOR_BLACK;
+		env->image.data[y_pixel * env->window_width + x_pixel] = COLOR_BLACK;
 		y_pixel++;
 	}
 }
