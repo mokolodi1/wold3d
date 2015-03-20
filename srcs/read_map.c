@@ -6,11 +6,21 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:40 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 20:09:00 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/20 15:56:32 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void			validate_int(char *string, int number)
+{
+	if (!ft_is_valid_int(string)
+		|| !(number == 0 || number == 1 || number == 2))
+	{
+		ft_printf("Invalid token in map file: %s\n", string);
+		exit(1);
+	}
+}
 
 static int			do_line(int fd, int **ints, int *width)
 {
@@ -29,13 +39,7 @@ static int			do_line(int fd, int **ints, int *width)
 	while (i < *width)
 	{
 		(*ints)[i] = ft_atoi(split[i]);
-		if (!ft_is_valid_int(split[i])
-			|| !((*ints)[i] == 1 || (*ints)[i] == 0))
-		{
-			ft_printf("i = %d\n", i);
-			ft_printf("Invalid token in map file: %s\n", split[i]);
-			exit(1);
-		}
+		validate_int(split[i], (*ints)[i]);
 		i++;
 	}
 	if (split && *split)
