@@ -16,18 +16,18 @@
 ** camera starts facing towards top of map
 */
 
-static void			set_camera_location(t_camera *camera, int x, int y
+static void			set_camera_location(t_camera *camera, double x, double y
 										, int *found)
 {
 	if (*found)
 	{
-		ft_printf("Multiple starting locations specified in map file.");
+		ft_printf("Multiple starting locations specified in map file.\n");
 		exit(1);
 	}
 	else
 	{
-		camera->location.x = x + .5;
-		camera->location.y = y + .5;
+		camera->location.x = x;
+		camera->location.y = y;
 		*found = 1;
 	}
 }
@@ -47,7 +47,7 @@ static void			setup_camera(t_camera *camera, t_map *map)
 		{
 			if (map->data[y][x] == 2)
 			{
-				set_camera_location(camera, x, y, &found);
+				set_camera_location(camera, x + .5, y + .5, &found);
 				map->data[y][x] = 0;
 			}
 			x++;
@@ -56,8 +56,8 @@ static void			setup_camera(t_camera *camera, t_map *map)
 	}
 	if (!found)
 	{
-		set_camera_location(camera, (map->width - 1) / 2, (map->height - 1) / 2
-							, &found);
+		set_camera_location(camera, (double)map->width / 2
+							, (double)map->height / 2, &found);
 		printf("setting at end\n");
 	}
 	camera->direction = M_PI_2;
