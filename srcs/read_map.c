@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:40 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/20 15:56:32 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 22:40:00 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void				read_map(t_map *map, char *filename)
 	fd = open(filename, O_RDONLY);
 	do_line(fd, &curr_ints, &map->width);
 	if (map->width <= 0)
-		ft_putendl_exit("Must have at least one line of data", 1);
+		ft_putendl_exit("Width must be greater than 0", 1);
 	ints_list = NULL;
 	ft_list_push_back(&ints_list, curr_ints);
 	map->height = 1;
