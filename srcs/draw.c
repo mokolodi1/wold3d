@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 22:11:53 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 21:30:24 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static void			draw_segment(t_environment *env, int x_pixel
 	wall_height = ray.distance == -1 ? 0 : convert_to_pixels(ray.distance);
 	ceiling_part = (env->window_height - wall_height) / 2;
 	y_pixel = 0;
-	while (y_pixel < ceiling_part)
+	while (y_pixel < ceiling_part && y_pixel < env->window_height)
 	{
 		set_image_data(env, x_pixel, y_pixel, COLOR_BLACK);
 		y_pixel++;
 	}
-	while (y_pixel < wall_height + ceiling_part)
+	while (y_pixel < wall_height + ceiling_part && y_pixel < env->window_height)
 	{
 		set_image_data(env, x_pixel, y_pixel, ray.color);
 		y_pixel++;
