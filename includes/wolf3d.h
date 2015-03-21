@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 22:13:48 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 22:00:44 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct		s_environment
 
 void				read_map(t_map *map, char *filename);
 void				setup_and_start_viewer(t_map *map);
+void				setup_camera(t_camera *camera, t_map *map);
 int					expose_hook(t_environment *env);
 int					key_hook(int keycode, t_environment *env);
 

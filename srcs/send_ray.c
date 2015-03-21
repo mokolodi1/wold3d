@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 18:27:52 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 20:28:38 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 22:18:01 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 */
 
 static void			set_vertical(t_ray *ray, t_map *map, t_point *start
-								 , double angle)
+									, double angle)
 {
 	int				current_x;
 	int				delta_x;
@@ -43,7 +43,7 @@ static void			set_vertical(t_ray *ray, t_map *map, t_point *start
 		current_x = floor(start->x) + (delta_x == 1);
 	current_y = start->y + delta_y * ft_abs_double(current_x - start->x);
 	while (current_x < map->width && current_x >= 0
-		   && current_y < map->height - 1 && current_y >= 0)
+			&& current_y < map->height - 1 && current_y >= 0)
 	{
 		if (map->data[(int)floor(current_y)][current_x]
 			&& map->data[(int)floor(current_y + 1)][current_x])
@@ -58,7 +58,7 @@ static void			set_vertical(t_ray *ray, t_map *map, t_point *start
 }
 
 static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
-								 , double angle)
+									, double angle)
 {
 	int				current_y;
 	int				delta_y;
@@ -73,7 +73,7 @@ static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
 		current_y = floor(start->y) + (delta_y == 1);
 	current_x = start->x + delta_x * ft_abs_double(current_y - start->y);
 	while (current_y < map->height && current_y >= 0
-		   && current_x < map->width - 1 && current_x >= 0)
+			&& current_x < map->width - 1 && current_x >= 0)
 	{
 		if (map->data[current_y][(int)floor(current_x)]
 			&& map->data[current_y][(int)floor(current_x + 1)])
@@ -93,7 +93,6 @@ void				send_ray(t_ray *ray, t_map *map, t_point *location
 	t_ray			vertical;
 	t_ray			horizontal;
 
-	
 	vertical.distance = -1;
 	horizontal.distance = -1;
 	if (sin(viewing_angle))
@@ -101,7 +100,8 @@ void				send_ray(t_ray *ray, t_map *map, t_point *location
 	if (cos(viewing_angle))
 		set_horizontal(&horizontal, map, location, viewing_angle);
 	if (vertical.distance != -1 && horizontal.distance != -1)
-		*ray = (vertical.distance < horizontal.distance ? vertical: horizontal);
+		*ray = (vertical.distance < horizontal.distance
+				? vertical : horizontal);
 	else if (vertical.distance != -1)
 		*ray = vertical;
 	else if (horizontal.distance != -1)

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 10:23:12 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/21 21:30:24 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 22:13:29 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 static int			convert_to_pixels(double distance)
 {
-	return ((atan(((double)SCOPE / 2) / distance) / DEGREE)
-			* 5 / 200 * WINDOW_HEIGHT);
+	int				to_return;
+
+	to_return = (atan(((double)SCOPE / 2) / distance) / DEGREE)
+				* 5 / 200 * WINDOW_HEIGHT;
+	return (to_return);
 }
 
 static void			set_image_data(t_environment *env, int x, int y, int color)
@@ -52,7 +55,7 @@ static void			draw_segment(t_environment *env, int x_pixel
 	}
 }
 
-void            	draw(t_environment *env)
+void				draw(t_environment *env)
 {
 	double			direction;
 	double			increment;

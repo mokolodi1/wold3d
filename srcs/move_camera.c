@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/04 15:59:15 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 14:42:39 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 21:36:28 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,5 @@ void				move_camera(double x, double y, t_environment *env)
 	else
 		env->camera.location.y = (possible_y < WALL_DISTANCE
 					? WALL_DISTANCE : env->map->height - 1 - WALL_DISTANCE);
-	
-	printf("camera location now (%f, %f)\n", env->camera.location.x
-		   , env->camera.location.y);
 	draw(env);
 }

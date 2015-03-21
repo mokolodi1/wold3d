@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/19 15:43:04 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/21 22:04:35 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -28,6 +28,7 @@ LIB_FLAGS =             -L $(LIBFT) -lft -L $(MLX) -lmlx \
 COMPILED =		main.o \
 				read_map.o \
 				setup_and_start_viewer.o \
+				setup_camera.o \
 				expose_hook.o \
 				key_hook.o \
 				move_camera.o \
