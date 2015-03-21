@@ -39,6 +39,7 @@ COMPILED =		main.o \
 all: $(NAME)
 
 $(NAME): $(COMPILED)
+	@make -C $(MLX)
 	@make -C $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(NAME) $(LIB_FLAGS) $(COMPILED)
 	@echo "made" $(NAME)
