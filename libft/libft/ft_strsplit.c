@@ -6,12 +6,11 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/08 12:12:28 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/19 17:27:09 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 22:32:19 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 /*
 ** Note: memory leaks possible if malloc breaks: oops!

@@ -1,8 +1,1 @@
-remove minilibx folder
-remove Makefile references to minilibx
-remove stdio.h include
-
-add images to increase speed
-
-check to see if all files and functions are needed (Makefile, .h)
 try to break it with different maps (empty, one line, etc.)

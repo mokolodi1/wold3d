@@ -6,12 +6,11 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/26 21:00:03 by tfleming          #+#    #+#             */
-/*   Updated: 2015/01/27 14:04:36 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/21 22:32:29 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static int			check_percent_percent(t_format *format)
 {
