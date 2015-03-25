@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/21 22:00:05 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/25 15:21:16 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 17:59:05 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,22 @@ static void			set_to_zero(int *first, int *second)
 static void			if_unset_put_in_middle(t_camera *camera, t_map *map
 											, int *found)
 {
-	// possible case where we try to put the camera where there's a wall
 	if (!*found)
 	{
+		if ((map->width % 2 == 1 && map->height % 2 == 1
+				&& map->data[(map->height - 1) / 2][(map->width - 1) / 2])
+			|| (map->width % 2 == 1
+				&& map->data[(map->height - 1) / 2][(map->width - 1) / 2]
+				&& map->data[(map->height - 1) / 2 + 1][(map->width - 1) / 2])
+			|| (map->height % 2 == 1
+				&& map->data[(map->height - 1) / 2][(map->width - 1) / 2]
+				&& map->data[(map->height - 1) / 2][(map->width - 1) / 2 + 1]))
+		{
+			ft_putstr("Walls prevented placement of camera in middle of map.");
+			ft_putstr(" Either remove the violating walls or specify a");
+			ft_putstr(" starting position with a '2'\n");
+			exit(1);
+		}
 		set_camera_location(camera, ((double)(map->width - 1)) / 2
 							, ((double)(map->height - 1)) / 2, found);
 	}

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 18:27:52 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/25 11:40:17 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:24:11 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,12 @@ void				send_ray(t_ray *ray, t_map *map, t_point *location
 		set_vertical(&vertical, map, location, viewing_angle);
 	if (cos(viewing_angle))
 		set_horizontal(&horizontal, map, location, viewing_angle);
-	if (vertical.distance != -1 && horizontal.distance != -1)
+	if (vertical.distance > 0 && horizontal.distance > 0)
 		*ray = (vertical.distance < horizontal.distance
 				? vertical : horizontal);
-	else if (vertical.distance != -1)
+	else if (vertical.distance > 0)
 		*ray = vertical;
-	else if (horizontal.distance != -1)
+	else if (horizontal.distance > 0)
 		*ray = horizontal;
 	else
 		ray->distance = -1;

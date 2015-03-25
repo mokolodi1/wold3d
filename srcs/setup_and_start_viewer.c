@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:46 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/21 22:13:41 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:25:45 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void				setup_and_start_viewer(t_map *map)
 {
 	t_environment	env;
 
+	setup_camera(&env.camera, map);
 	setup_environment(&env, map);
 	setup_image(&env);
-	setup_camera(&env.camera, map);
 	mlx_expose_hook(env.window, expose_hook, &env);
 	mlx_hook(env.window, 2, 3, key_hook, &env);
 	mlx_loop(env.mlx);
