@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/21 22:00:44 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 11:40:05 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@
 ** VELOCITY = amount moved each key press
 ** ANGULAR_VELOCITY = amount rotated each key press
 ** WALL_DISTANCE = minimum distance between camera and walls
+** assumption: WALL_DISTANCE < 2 * VELOCITY
 */
 
 # define VELOCITY				.1
@@ -83,6 +84,9 @@
 # define COLOR_WHITE			RGB_TO_COLOR(255, 255, 255)
 # define COLOR_BLACK			RGB_TO_COLOR(0, 0, 0)
 
+# define POINTS_RIGHT(ANGLE)	((ANGLE) < M_PI_2 || (ANGLE) > M_PI + M_PI_2)
+# define POINTS_DOWN(ANGLE)		((ANGLE) > M_PI)
+
 /*
 ** yay for one-line defines
 */
@@ -95,12 +99,6 @@ typedef struct		s_point
 	double			x;
 	double			y;
 }					t_point;
-
-typedef struct		s_line
-{
-	t_point			first;
-	t_point			second;
-}					t_line;
 
 /*
 ** distance = -1 ==> no wall found

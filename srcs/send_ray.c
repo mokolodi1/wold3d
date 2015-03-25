@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 18:27:52 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/21 22:18:01 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 11:40:17 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@
 /*
 ** I could make this more optimized (do both loops in the same
 ** function or something), but this is very easy to understand and
-** runs without a problem under normal circumstances.
-*/
-
-/*
-** not sure if the (int)floor(current_x) is redundant
+** runs without a problem.
 */
 
 static void			set_vertical(t_ray *ray, t_map *map, t_point *start
@@ -35,7 +31,7 @@ static void			set_vertical(t_ray *ray, t_map *map, t_point *start
 	double			current_y;
 	double			delta_y;
 
-	delta_x = ((angle < M_PI_2 || angle > M_PI_2 + M_PI) ? 1 : -1);
+	delta_x = (POINTS_RIGHT(angle) ? 1 : -1);
 	delta_y = -sin(angle) / cos(angle) * delta_x;
 	if (start->x < 0 || start->x > map->width)
 		current_x = (start->x < 0 ? 0 : map->width);
@@ -65,7 +61,7 @@ static void			set_horizontal(t_ray *ray, t_map *map, t_point *start
 	double			current_x;
 	double			delta_x;
 
-	delta_y = ((angle > M_PI) ? 1 : -1);
+	delta_y = (POINTS_DOWN(angle) ? 1 : -1);
 	delta_x = -cos(angle) / sin(angle) * delta_y;
 	if (start->y < 0 || start->y > map->height)
 		current_y = (start->y < 0 ? 0 : map->height);
