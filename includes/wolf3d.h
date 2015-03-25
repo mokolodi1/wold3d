@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:49 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/25 11:40:05 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 12:14:21 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void				setup_camera(t_camera *camera, t_map *map);
 int					expose_hook(t_environment *env);
 int					key_hook(int keycode, t_environment *env);
 
-void				move_camera(double x, double y, t_environment *env);
+void				move_camera(double angle, t_environment *env);
 void				rotate_camera(t_environment *env, double delta_angle);
 
 void				draw(t_environment *env);

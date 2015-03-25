@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/21 22:00:05 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/21 22:12:30 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 15:21:16 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,15 @@ static void			set_to_zero(int *first, int *second)
 	*second = 0;
 }
 
-static void			end_stuff(t_camera *camera, t_map *map, int *found)
+static void			if_unset_put_in_middle(t_camera *camera, t_map *map
+											, int *found)
 {
-	if (!found)
-		set_camera_location(camera, (double)(map->width - 1) / 2
-							, (double)(map->height - 1) / 2, found);
-	camera->direction = M_PI_2;
+	// possible case where we try to put the camera where there's a wall
+	if (!*found)
+	{
+		set_camera_location(camera, ((double)(map->width - 1)) / 2
+							, ((double)(map->height - 1)) / 2, found);
+	}
 }
 
 void				setup_camera(t_camera *camera, t_map *map)
@@ -67,5 +70,6 @@ void				setup_camera(t_camera *camera, t_map *map)
 		}
 		y++;
 	}
-	end_stuff(camera, map, &found);
+	if_unset_put_in_middle(camera, map, &found);
+	camera->direction = M_PI_2;
 }
