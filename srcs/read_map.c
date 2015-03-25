@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 13:53:40 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/21 22:40:00 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/25 16:52:27 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,20 @@ static int			do_line(int fd, int **ints, int *width)
 	read_ret = get_next_line(fd, &line);
 	if (read_ret == -1)
 		ft_putendl_exit("Error reading file", 1);
-	split = ft_strsplit(line, ' ');
-	*width = ft_arrlen(split);
-	*ints = malloc(*width * sizeof(int));
-	i = 0;
-	while (i < *width)
+	if (read_ret > 0)
 	{
-		(*ints)[i] = ft_atoi(split[i]);
-		validate_int(split[i], (*ints)[i]);
-		i++;
-	}
-	if (split && *split)
+		split = ft_strsplit(line, ' ');
+		*width = ft_arrlen(split);
+		*ints = malloc(*width * sizeof(int));
+		i = 0;
+		while (i < *width)
+		{
+			(*ints)[i] = ft_atoi(split[i]);
+			validate_int(split[i], (*ints)[i]);
+			i++;
+		}
 		ft_strsplit_free(split);
+	}
 	free(line);
 	return (read_ret);
 }
