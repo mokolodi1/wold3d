@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 18:33:38 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/21 22:17:02 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/26 22:28:57 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int					main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_putendl("Incorrect arguments: ./wolf3d map.wolf");
+		ft_putchar('\n');
+		ft_putstr("A wall is formed between two 1s that are adjacent and is");
+		ft_putstr(" colored according to the direction. A 2 in the map");
+		ft_putstr(" specifies where the player starts.\n");
 		ft_putendl("To help make compatible maps:");
 		ft_putstr("https:");
 		ft_putchar('/');
